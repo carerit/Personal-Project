@@ -1,0 +1,11 @@
+.centeredDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height to fill the viewport */
+  }
+
+
+.noUnderline{
+    text-decoration: none;
+  }
