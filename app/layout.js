@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link";
 import Navbar from "./navbar";
+import FooterBar from "./footer";
 
 export const metadata = {
   title: "Personal Website",
@@ -14,6 +15,8 @@ export default function RootLayout({ children }) {
         <Navbar></Navbar>
 
         <main>{children}</main>
+
+        <FooterBar></FooterBar>
       </body>
     </html>
   );
