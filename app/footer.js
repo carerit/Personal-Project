@@ -2,13 +2,13 @@ import styles from "./page.module.css";
 
 export default function FooterBar() {
   return (
-    <div class="footer">
+    <div className="footer">
       <p>
         copyright &copy;{" "}
         <a
           href="https://gossamer-comet-pie.glitch.me/#home"
           target="_blank"
-          class={styles.noUnderline}
+          className={styles.noUnderline}
         >
           Kevin Li
         </a>{" "}
