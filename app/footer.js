@@ -2,7 +2,7 @@ import styles from "./page.module.css";
 
 export default function FooterBar() {
   return (
-    <div className="footer">
+    <div className={styles.footer}>
       <p>
         copyright &copy;{" "}
         <a

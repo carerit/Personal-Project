@@ -6,7 +6,7 @@ export default function Navbar() {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
           <Link className={styles.noUnderline} href="/">
-            <span className="navbar-brand">Personal Website</span>
+            <span className="navbar-brand">Pawsome</span>
           </Link>
 
           <button
