@@ -2,7 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Set the height to fill the viewport */
+    height: 90vh; /* Set the height to fill the viewport */
+  }
+
+  .footer {
+    position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   }
 
 
