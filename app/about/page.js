@@ -6,10 +6,11 @@ export default function AboutPage() {
       <div className="container">
         <h1>About Pawsome</h1>
         <p className="lead">
-          I made Pawsome to demonstrate how to use Next.js to build a simple web
-          app that uses an API. This app uses he dogCEO API to get random dog
-          images. It also allows me to exercise front end skills using react and
-          next.js hosted on vercel.
+          I created Pawsome as a showcase for building a simple web application
+          using Next.js. This application leverages the dogCEO API to fetch
+          random dog images, while also providing an opportunity to hone my
+          frontend development skills with React and Bootstrap. It's currently
+          hosted on Vercel.
         </p>
       </div>
     </div>

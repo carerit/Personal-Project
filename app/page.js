@@ -1,73 +1,90 @@
 "use client";
-
+import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
-import React, { useState } from "react";
 
 export default function Home() {
   const BREEDS_URL = "https://dog.ceo/api/breeds/list/all";
 
-  const [dogImage, setDogImage] = useState(
-    "https://dog.ceo/img/dog-api-logo.svg"
-  );
+  const [breeds, setBreeds] = useState([]);
+  const [selectedBreed, setSelectedBreed] = useState("");
+  const [dogImage, setDogImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function getRandomImage() {
-    fetch("https://dog.ceo/api/breeds/image/random")
-      .then((response) => response.json())
+  useEffect(() => {
+    // Fetch the list of dog breeds when the component mounts
+    fetch(BREEDS_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        const breedsObject = data.message;
+        const breedsArray = Object.keys(breedsObject);
+        setBreeds(breedsArray);
+      });
+  }, []);
+
+  const handleBreedChange = (e) => {
+    const selectedBreed = e.target.value;
+    setSelectedBreed(selectedBreed);
+  };
+
+  const getDogImage = (url) => {
+    setLoading(true);
+
+    fetch(url)
+      .then((res) => res.json())
       .then((data) => {
         setDogImage(data.message);
-      })
-      .catch((error) => console.error("Error fetching random image:", error));
-  }
-
-  const [list, setList] = useState("https://dog.ceo/api/breeds/list/all");
-
-  function populateList() {
-    fetch(BREEDS_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        const dogList = Object.keys(data.message);
-        const newList = dogList.map((dog) => {
-          return `  <option value="${dog}">${dog}</option>`;
-        });
-        setList(newList);
+        setLoading(false);
       });
-  }
+  };
+
+  const handleBreedConfirm = () => {
+    if (selectedBreed) {
+      const url = `https://dog.ceo/api/breed/${selectedBreed}/images/random`;
+      getDogImage(url);
+    }
+  };
 
   return (
     <>
-      <div>
-        {/* <div className={styles.tap}>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={getRandomImage}
-          >
-            Click for a random image
-          </button>
-          <h3 className={styles.headerText}>
-            Change dog images by clicking the button!
-          </h3>
-          <div className={styles.dogBox}>
-            <img id="dogImage" src={dogImage} alt="Random Dog" />
-          </div>
-        </div> */}
+      <div className={styles.container}>
+        <h1>Select from the Drop Menu</h1>
+        <div className="w-50 ">
+          <div className="d-flex input-group w-100 py-5">
+            <select
+              className="breeds form-select text-capitalize"
+              aria-label="Default select example"
+              onChange={handleBreedChange}
+            >
+              <option value="">Select a breed...</option>
+              {breeds.map((breed) => (
+                <option key={breed} value={breed}>
+                  {breed}
+                </option>
+              ))}
+            </select>
 
-        <div className="container">
-          <header>
-            <h1>Dog Viewer</h1>
-            <select className="breeds" id="list"></select>
-          </header>
-        </div>
-        <div className="img-container">
-          <div className="container">
-            <div className="spinner">🐶</div>
-            <img
-              src="https://res.cloudinary.com/codeg0d/image/upload/v1586691732/dog_ilxfeh.jpg"
-              className="dog-img show"
-              alt="friendly and intimate - man's best friend"
-            />
+            <button
+              className="btn btn-outline-secondary"
+              onClick={handleBreedConfirm}
+              type="button"
+            >
+              Confirm
+            </button>
           </div>
         </div>
+
+        {loading ? (
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        ) : (
+          <img
+            className={styles.centeredDogImage}
+            src={dogImage}
+            alt="Dog"
+            style={{ display: dogImage ? "block" : "none" }}
+          />
+        )}
       </div>
     </>
   );

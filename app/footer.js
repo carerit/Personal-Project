@@ -2,25 +2,13 @@ import styles from "./page.module.css";
 
 export default function FooterBar() {
   return (
-    // <div className={styles.footer}>
-    //   <p>
-    //     copyright &copy;{" "}
-    //     <a
-    //       href="https://gossamer-comet-pie.glitch.me/#home"
-    //       target="_blank"
-    //       className={styles.noUnderline}
-    //     >
-    //       Kevin Li
-    //     </a>{" "}
-    //   </p>
-    // </div>
 
     <div className="container">
-      <footer className="d-flex flex-wrap justify-content-between align-items-center py-1 my-1 border-top fixed-bottom">
+      <footer className="d-flex flex-wrap justify-content-between align-items-center py-1 border-top fixed-bottom bg-white">
         <div className="col-md-4 d-flex align-items-center">
           <a
             href="/"
-            className="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
+            className="mb-3 ms-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
           >
             <svg
               width="46px"
@@ -159,8 +147,8 @@ export default function FooterBar() {
               </svg>
             </a>
           </li>
-          <li className="ms-3">
-            <a className="text-body-secondary" href="https://github.com/carerit">
+          <li className="ms-3 me-3">
+            <a className="text-body-secondary" href="https://github.com/carerit" target="_blank">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="32px"
