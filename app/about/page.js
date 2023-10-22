@@ -9,8 +9,8 @@ export default function AboutPage() {
           I created Pawsome as a showcase for building a simple web application
           using Next.js. This application leverages the dogCEO API to fetch
           random dog images, while also providing an opportunity to hone my
-          frontend development skills with React and Bootstrap. It's currently
-          hosted on Vercel.
+          frontend development skills with React and Bootstrap. It&apos;s
+          currently hosted on Vercel.
         </p>
       </div>
     </div>
