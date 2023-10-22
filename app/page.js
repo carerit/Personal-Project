@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
+import { get } from "jquery";
 
 export default function Home() {
   const BREEDS_URL = "https://dog.ceo/api/breeds/list/all";
+  const random_dog_url = "https://dog.ceo/api/breeds/image/random";
 
   const [breeds, setBreeds] = useState([]);
   const [selectedBreed, setSelectedBreed] = useState("");
@@ -19,6 +21,7 @@ export default function Home() {
         const breedsObject = data.message;
         const breedsArray = Object.keys(breedsObject);
         setBreeds(breedsArray);
+        getDogImage(random_dog_url);
       });
   }, []);
 
@@ -39,9 +42,11 @@ export default function Home() {
   };
 
   const handleBreedConfirm = () => {
-    if (selectedBreed) {
+    if (selectedBreed !== "random") {
       const url = `https://dog.ceo/api/breed/${selectedBreed}/images/random`;
       getDogImage(url);
+    } else {
+      getDogImage(random_dog_url);
     }
   };
 
@@ -49,14 +54,16 @@ export default function Home() {
     <>
       <div className={styles.container}>
         <h1>Select from the Drop Menu</h1>
-        <div className="w-50 ">
+        <div className="w-50">
           <div className="d-flex input-group w-100 py-5">
             <select
               className="breeds form-select text-capitalize"
               aria-label="Default select example"
               onChange={handleBreedChange}
             >
-              <option value="">Select a breed...</option>
+              <option key="random" value="random">
+                Random...
+              </option>
               {breeds.map((breed) => (
                 <option key={breed} value={breed}>
                   {breed}
@@ -79,13 +86,13 @@ export default function Home() {
             <span className="visually-hidden">Loading...</span>
           </div>
         ) : (
-          <div className="position-relative py-5 w-100 h-100">
+          <div className={styles.centeredDogDiv}>
             <Image
               layout="fill"
-              objectFit="contain"
+              objectFit="cover"
               src={dogImage}
-              alt="Dog"
-              style={{ display: dogImage ? "block" : "none" }}
+              alt="Dog don't exist anymore :("
+              className="rounded-3 border border-dark"
             />
           </div>
         )}
