@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
+import Image from "next/image";
 
 export default function Home() {
   const BREEDS_URL = "https://dog.ceo/api/breeds/list/all";
@@ -74,16 +75,19 @@ export default function Home() {
         </div>
 
         {loading ? (
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         ) : (
-          <img
-            className={styles.centeredDogImage}
-            src={dogImage}
-            alt="Dog"
-            style={{ display: dogImage ? "block" : "none" }}
-          />
+          <div className="position-relative py-5 w-100 h-100">
+            <Image
+              layout="fill"
+              objectFit="contain"
+              src={dogImage}
+              alt="Dog"
+              style={{ display: dogImage ? "block" : "none" }}
+            />
+          </div>
         )}
       </div>
     </>

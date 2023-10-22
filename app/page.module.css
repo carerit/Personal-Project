@@ -14,7 +14,7 @@
   height: 90vh; /* Set the container to cover the full viewport height */
 }
 
-.centeredDogImage {
+.centeredDogDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,6 +24,9 @@
   margin-left: 1vw;
   margin-right: 1vw;
   margin-bottom: 4vh;
+}
+.centeredDogImage {
   border-radius: 10px;
   border: 2px solid black;
 }
+
